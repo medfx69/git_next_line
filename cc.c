@@ -1,6 +1,6 @@
 #include <fcntl.h>
 #include <unistd.h>
-#include "git_next_line.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -54,28 +54,34 @@ char	*get_next_line(int fd)
 	j = 0;
 	while (read(fd, (buf + j), 1) > 0)
 	{
-		if (BUFSIZE == j || buf[j] == 10)
+		if (BUFSIZE - 1 == j || buf[j] == 10)
 			break ;
 		j++;
 	}
-	if (j == 0)
-		return (NULL);
+	if (buf[j] != '\n')
+		buf[j + 1] = '\0';
+	if (i == 0)
+	{
+		i++;
+		free(ptr);
+		ptr = (char *)malloc(1);
+	}
 	ptr = ft_strjoin(ptr, buf);
 	if (buf[j] != '\n')
 		get_next_line(fd);
+	i = 0;
 	return (ptr);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int	fd;
-	int i = 8;
+	int i = 9;
 	int j;
 
-	fd = open("/Users/mait-aad/Desktop/test.txt", O_RDONLY);
-	write(fd,"b",1);
+	fd = open("/home/mohamed/Desktop/test.txt", O_RDONLY);
 	j = 1;
 	while (i--)
 		printf("line %d : %s \n", j++, get_next_line(fd));
 	close(fd);
-}	
+}	*/
