@@ -52,6 +52,8 @@ char	*get_next_line(int fd)
 	static int	i;
 
 	j = 0;
+	if (BUFSIZE == 0)
+		return (NULL);
 	while (read(fd, (buf + j), 1) > 0)
 	{
 		if (BUFSIZE - 1 == j || buf[j] == 10)
@@ -66,6 +68,8 @@ char	*get_next_line(int fd)
 		free(ptr);
 		ptr = (char *)malloc(1);
 	}
+	if (j == 0)
+		return (NULL);
 	ptr = ft_strjoin(ptr, buf);
 	if (buf[j] != '\n')
 		get_next_line(fd);
@@ -73,7 +77,7 @@ char	*get_next_line(int fd)
 	return (ptr);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	int	fd;
 	int i = 9;
@@ -84,4 +88,4 @@ char	*get_next_line(int fd)
 	while (i--)
 		printf("line %d : %s \n", j++, get_next_line(fd));
 	close(fd);
-}	*/
+}
