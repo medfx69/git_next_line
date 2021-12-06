@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:15:16 by mait-aad          #+#    #+#             */
-/*   Updated: 2021/12/05 16:37:23 by mait-aad         ###   ########.fr       */
+/*   Updated: 2021/12/06 16:01:10 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ char	*ft_strjoin(char	*s1, char	*s2);
 char	*get_next_line(int fd);
 char	*ft_strchr(const char	*str, int c);
 size_t	ft_strlen(const char *str);
-char	*ft_strdup(char	*s1);
+void	ft_strncpy(char *dest, char *src, int size);
 
 #endif

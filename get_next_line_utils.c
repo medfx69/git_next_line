@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 17:20:52 by mait-aad          #+#    #+#             */
-/*   Updated: 2021/12/05 18:00:24 by mait-aad         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:55:30 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,21 @@ char	*ft_strjoin(char	*s1, char	*s2)
 	int		k;
 	int		i;
 
-	if (!s1)
+	if (!s1 || !s2)
 		return (ft_strdup(s2));
 	k = ft_strlen(s1);
 	j = ft_strlen(s2);
 	ptr = malloc(k + j + 1);
 	if (!ptr)
 		return (NULL);
-	i = -1;
-	while (i++ < k)
-		ptr[i] = s1[i];
 	i = 0;
-	while (i < j)
-		ptr[k++] = s2[i++];
-	ptr[k] = '\0';
+	j = 0;
+	while (s1[j])
+		ptr[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		ptr[i++] = s2[j++];
+	ptr[i] = 0;
 	free(s1);
 	return (ptr);
 }
